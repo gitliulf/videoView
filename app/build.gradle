@@ -27,6 +27,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    publishing {
+        singleVariant('release'){
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 dependencies {
@@ -39,6 +46,7 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
+                from components.release
                 groupId = 'com.liulf.videoview' //groupId 随便取
                 artifactId = 'videoview'  //artifactId 随便取
                 version = '1.0.0'
